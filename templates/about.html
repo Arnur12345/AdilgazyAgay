@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'about.css' %}">
+
+<title>About EDU</title>
+
+<section class="home">
+    <div class="home-content">
+        <h1>About EDU</h1>
+        <p>
+            Welcome to EDU, a platform designed to provide quality educational content to learners of all levels. 
+            Our mission is to make learning accessible, engaging, and effective through a variety of resources including videos, 
+            PDFs, and interactive materials. Whether you're a student looking for supplementary learning materials or a parent 
+            wanting to stay informed about your child's education, EDU has something for you.
+        </p>
+        <p>
+            Our platform offers a vast array of courses and study materials, designed and curated by experts in their respective fields. 
+            We believe in empowering students and teachers with the tools they need to succeed in an ever-changing world.
+        </p>
+        <div class="btn-box">
+            <a href="{% url 'video-list' %}">Videos</a>
+            <a href="#">Telegram</a>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const message = "{{ message|escapejs }}";
+        if (message) {
+            showAlert(message);
+        }
+    });
+
+    function showAlert(message) {
+        const alertBox = document.createElement('div');
+        alertBox.className = 'custom-alert';
+        alertBox.innerHTML = `<p>${message.replace(/\\n/g, '<br>')}</p><button onclick="this.parentElement.style.display='none';">Close</button>`;
+        document.body.appendChild(alertBox);
+    }
+</script>
+{% endblock %}

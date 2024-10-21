@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Customer Orders</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'table.css' %}">
+</head>
+
+
+<main class="table" id="customers_table">
+    <section class="table__header">
+        <h1>User list</h1>
+        <a class="user_create" href="{% url 'create-user' %}">Create user</a>
+        <div class="input-group">
+            <input type="search" name="q" placeholder="Search User..." id="search-input">
+            <img src="{% static 'media/search.png' %}" alt="Search">
+        </div>
+    </section>
+    <section class="table__body">
+        <table>
+            <thead>
+                <tr>
+                    <th>Id <span class="icon-arrow">&UpArrow;</span></th>
+                    <th>Username <span class="icon-arrow">&UpArrow;</span></th>
+                    <th>Password <span class="icon-arrow">&UpArrow;</span></th>
+                    <th>Is Staff <span class="icon-arrow">&UpArrow;</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.subpassword }}</td>
+                    <td>{{ user.is_staff }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</main>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.querySelector('#search-input');
+    const tableRows = document.querySelectorAll('tbody tr');
+
+    searchInput.addEventListener('input', function () {
+        const query = this.value.toLowerCase();
+
+        tableRows.forEach(row => {
+            const cells = row.querySelectorAll('td');
+            const matches = Array.from(cells).some(cell => cell.textContent.toLowerCase().includes(query));
+            row.style.display = matches ? '' : 'none';
+        });
+    });
+
+    const headers = document.querySelectorAll('thead th');
+    headers.forEach(header => {
+        header.addEventListener('click', () => {
+            const table = header.parentElement.parentElement.parentElement;
+            const index = Array.from(header.parentElement.children).indexOf(header);
+            const rows = Array.from(table.querySelectorAll('tbody tr'));
+            const isAsc = header.classList.toggle('asc');
+            const direction = isAsc ? 1 : -1;
+
+            rows.sort((rowA, rowB) => {
+                const cellA = rowA.children[index].textContent.trim();
+                const cellB = rowB.children[index].textContent.trim();
+
+                return cellA > cellB ? (1 * direction) : (-1 * direction);
+            });
+
+            rows.forEach(row => table.querySelector('tbody').appendChild(row));
+        });
+    });
+});
+
+</script>
+{% endblock %}

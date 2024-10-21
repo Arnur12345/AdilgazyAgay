@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'pdfs.css' %}">
+
+<title>AdilgazyEDU</title>
+
+<div class="main-container">
+    <h1 class="page-title">PDF Documents</h1>
+    <div class="pdfs-container">
+        {% for pdf in pdfs %}
+        <div class="pdf-card">
+            <div class="pdf-info">
+                <h3 class="pdf-title">{{ pdf.pdf_file.name|slice:":-4" }}</h3>
+                <a href="{{ pdf.pdf_file.url }}" class="pdf-link" target="_blank">View PDF</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

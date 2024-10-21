@@ -1,0 +1,6 @@
+Django==4.2.4  # Ensure you use the version you're working with
+gunicorn==21.2.0  # For deploying the app in production
+psycopg2==2.9.6  # PostgreSQL database adapter (if you are using PostgreSQL)
+whitenoise==6.5.0  # To serve static files
+dj-database-url==1.0.0  # Database URL configuration helper
+django-environ==0.10.0  # For managing environment variables

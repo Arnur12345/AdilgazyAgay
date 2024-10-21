@@ -1,0 +1,127 @@
+/* Add this to your existing style.css file */
+
+body {
+    background-color: #f0f4f8;
+    font-family: 'Poppins', sans-serif;
+    color: #001a2c;
+    margin: 0;
+    padding: 0;
+}
+
+.header{
+    position:fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 10%;
+    background: white;
+    box-shadow: rgba(77, 77, 77, 0.12) 0px 2px 3px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.logo{
+    width: 120px;
+    height: auto;
+}
+.header .navbar .signin{
+    color:red;
+}
+.navbar a {
+    font-size: 18px;
+    color: #001a2c;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left:35px;
+    transition: .3s;
+}
+
+
+.navbar a:hover, .navbar a.active{
+    color: #195c89;
+}
+
+.container {
+    max-width: 500px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.form-title {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #195c89;
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.upload-form p {
+    margin: 10px 0;
+    width: 100%;
+}
+
+.upload-form label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #001a2c;
+}
+
+.upload-form input[type="file"],
+.upload-form input[type="text"],
+.upload-form input[type="email"],
+.upload-form textarea,
+.upload-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.upload-form input[type="file"] {
+    border: none;
+}
+
+.upload-button {
+    background-color: #195c89;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.upload-button:hover {
+    background-color: #163c5c;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        margin: 50px auto;
+        padding: 15px;
+    }
+
+    .form-title {
+        font-size: 20px;
+    }
+
+    .upload-button {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+}

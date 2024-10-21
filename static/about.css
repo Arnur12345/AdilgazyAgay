@@ -1,0 +1,164 @@
+/* General body styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: #0066cc;
+}
+
+a:hover {
+    color: #005bb5;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+/* Container for home section */
+.home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    background-color: #fff;
+    padding: 50px 0;
+}
+
+.home-content {
+    max-width: 900px;
+    text-align: center;
+}
+
+.home-content p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+/* Button styles */
+.btn-box {
+    margin-top: 30px;
+}
+
+.btn-box a {
+    background-color: #0066cc;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-size: 1.1em;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-box a:hover {
+    background-color: #005bb5;
+}
+
+/* Custom alert box */
+.custom-alert {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 15px;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.custom-alert button {
+    background-color: #721c24;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 3px;
+}
+
+.custom-alert button:hover {
+    background-color: #491217;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    .home-content p {
+        font-size: 1em;
+    }
+
+    .btn-box a {
+        font-size: 1em;
+        padding: 10px 20px;
+    }
+}
+
+/* Logo */
+.logo h1 {
+    font-size: 24px;
+    color: #001a2c;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+/* Adjustments for navbar in header */
+.header {
+    background-color: #ffffff;
+    padding: 20px 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+}
+
+.navbar a {
+    font-size: 18px;
+    color: #001a2c;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 35px;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover, .navbar a.active {
+    color: #195c89;
+}
+
+/* Responsive styles for navigation */
+@media (max-width: 768px) {
+    .navbar a {
+        font-size: 16px;
+        margin-left: 20px;
+    }
+}
+
+/* Home section styles for smaller screens */
+@media (max-width: 768px) {
+    .home-content p {
+        font-size: 1em;
+    }
+
+    .btn-box a {
+        font-size: 1em;
+        padding: 10px 20px;
+    }
+}
