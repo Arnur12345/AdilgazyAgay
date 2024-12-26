@@ -1,50 +1,88 @@
 {% load static %}
 <!DOCTYPE html>
-
-<html class="no-js" lang="pt-br">
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-            <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins" />
+        <title>AdilgazyEdu</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" 
+              integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+        <link rel="stylesheet" href="{% static 'styles/main.css' %}">
     </head>
-
-    {% if user.is_staff %}
-    <header class="header">
-        <nav class="navbar">
-            <a href="{% url 'home' %}" class="active">Home</a>
-            
-            <a href="{% url 'video-list' %}">Videos</a>
-            {% if user.is_authenticated %}
-            <a href="{% url 'show-users' %}">User-List</a>
-            <a href="{% url 'create-video' %}">Create-Video</a>
-            <a href="{% url 'upload-pdf' %}">Upload PDF</a>
-            <a href="{% url 'pdf-list' %}">PDF List</a>
-            <a href="{% url 'logout' %}">Logout</a>
-            {% else %} 
-            <div class="signin">
-                <a href="{% url 'login' %}">Register</a>
-            </div>
-            {% endif %}
-        </nav>
-    </header>
-    {% else %}
-    <header class="header">
-        <nav class="navbar">
-            <a href="{% url 'home' %}" class="active">Home</a>
-            <a href="{% url 'about' %}">About</a>
-            <a href="{% url 'video-list' %}">Courses</a>
-            <a href="{% url 'pdf-list' %}">PDF List</a>
-
-            <div class="signin">
-                <a href="{% url 'login' %}">Register</a>
-            </div>
-        </nav>
-      </header>
-{% endif %}
-<body>
     
-    {% block content %}{% endblock %}
-</body>
+    <body>
+        <!-- Header Section -->
+        <header class="header">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="{% url 'home' %}">AdilgazyEdu</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <!-- General Navigation Links -->
+                            <li class="nav-item">
+                                <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" 
+                                   href="{% url 'home' %}">Главная</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" 
+                                   href="{% url 'about' %}">Информация</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {% if request.resolver_match.url_name == 'course-list' %}active{% endif %}" 
+                                   href="{% url 'course-list' %}">Курсы</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {% if request.resolver_match.url_name == 'pdf-list' %}active{% endif %}" 
+                                   href="{% url 'pdf-list' %}">Документы</a>
+                            </li>
+
+                            <!-- Conditional Links for Authenticated Users -->
+                            {% if user.is_authenticated %}
+                                {% if user.is_staff %}
+                                    <li class="nav-item">
+                                        <a class="nav-link {% if request.resolver_match.url_name == 'show-users' %}active{% endif %}" 
+                                           href="{% url 'show-users' %}">Пользователи</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link {% if request.resolver_match.url_name == 'create-course' %}active{% endif %}" 
+                                           href="{% url 'create-course' %}">Создать курс</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link {% if request.resolver_match.url_name == 'upload-pdf' %}active{% endif %}" 
+                                           href="{% url 'upload-pdf' %}">Загрузить документ</a>
+                                    </li>
+                                {% endif %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
+                                </li>
+                            {% else %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'login' %}">Авторизация</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Main Content Section -->
+        <main class="container mt-4">
+            {% block content %}
+            {% endblock %}
+        </main>
+
+        <!-- Footer Section -->
+        
+
+        <!-- Scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" 
+                integrity="sha384-pprn3073KE6tl6Wm9KWk/Nqf4Mt6a0YQ4ZUgq7Nf1rtEjrHl8oI5Pj9jjyFh1zW6" 
+                crossorigin="anonymous"></script>
+    </body>
 </html>

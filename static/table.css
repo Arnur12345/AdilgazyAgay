@@ -13,57 +13,13 @@
     }
 }
 
-.header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 20px 10%;
-    background: white;
-    box-shadow: rgba(77, 77, 77, 0.12) 0px 2px 3px 0px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 100;
-}
-
-.main-content {
-    padding-top: 100px; /* Adjust the value as needed to create space */
-}
 
 
-
-.logo {
-    width: 120px;
-    height: auto;
-}
-
-.navbar a {
-    font-size: 18px;
-    color: #001a2c;
-    text-decoration: none;
-    font-weight: 500;
-    margin-left: 35px;
-    transition: .3s;
-}
-
-.navbar a:hover, .navbar a.active {
-    color: #195c89;
-}
-
-body {
-    min-height: 100vh;
-    background: url(images/html_table.jpg) center / cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 
 
 main.table {
     padding: 60px;
-    width: 82vw;
     height: 90vh;
     background-color: #fff5;
     backdrop-filter: blur(7px);

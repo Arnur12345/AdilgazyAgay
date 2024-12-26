@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% load static %}
 
 {% block content %}
@@ -7,48 +6,37 @@
 
 <title>AdilgazyEDU</title>
 
-
-<div class="main-container">
-    <h1 class="page-title">Videos</h1>
-    <div class="videos-container">
-        {% if message %}
-        <div style="display: flex; align-items: center; gap: 10px;">
-            <h1 style="color:black; display: inline-block;">{{message}}</h1>
-        </div>
-        {% else %}
-        {% for video in videos %}
-            <div class="video-container {% if not video.is_available %}unavailable{% endif %}">
-                {% if video.is_available %}
-                    <video class="video-player" controls {% if video.thumbnail %}poster="{{ video.thumbnail.url }}"{% endif %}>
-                        <source src="{{ video.video_file.url }}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                {% else %}
-                    
-                {% endif %}
-                <div class="video-info">
-                    <h3 class="video-title">{{ video.title }}</h3>
-                    <p class="video-description">{{ video.description|truncatewords:20 }}</p>
-                    <span class="video-status {% if video.is_available %}available{% else %}unavailable{% endif %}">
-                        {% if video.is_available %}Available{% else %}Not Available{% endif %}
-                    </span>
-                    {% if user.is_staff %}
-                        <div class="switch-container">
-                            <form method="post" class="availability-form" action="{% url 'video-list' %}">
-                                {% csrf_token %}
-                                <input type="hidden" name="video_id" value="{{ video.id }}">
-                                <label class="switch">
-                                    <input type="checkbox" name="is_available" {% if video.is_available %}checked{% endif %} onchange="this.form.submit()">
-                                    <span class="slider round"></span>
-                                </label>
-                            </form>
-                        </div>
-                    {% endif %}
-                </div>
-            </div>
-        {% endfor %}
+<div class="videos-container">
+    <div class="header-section">
+        <h1 class="page-title">Videos in {{ course.title }}</h1>
+        <a href="{% url 'course-list' %}" class="btn btn-secondary">Back to Courses</a>
+        {% if user.is_staff %}
+        <a href="{% url 'add-video' course.id %}" class="btn btn-primary">Add Video</a>
         {% endif %}
     </div>
+
+    {% if videos %}
+    <div class="video-list">ы
+        {% for video in videos %}
+        
+        <div class="video-card">
+            <a href="{% url 'video-detail' course.id video.id %}" class="video-card-link">
+                <video class="video-player">
+                    <source src="{{ video.video_file.url }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-content">
+                    <h3 class="video-title">{{ video.title }}</h3>
+                    <p class="video-description">{{ video.description|truncatewords:20 }}</p>
+                </div>
+            </a>
+        </div>
+        
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="no-videos">No videos available for this course. Add a video to get started!</p>
+    {% endif %}
 </div>
 
 {% endblock %}

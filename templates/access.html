@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'access.css' %}">
+
+<title>AdilgazyEDU</title>
+
+<div class="main-container">
+    <h1 class="page-title">Grant Video Access</h1>
+
+    {% if message %}
+    <div class="message-container">
+        <p class="message">{{ message }}</p>
+    </div>
+    {% endif %}
+
+    <form method="post" action="" class="access-form">
+        {% csrf_token %}
+
+        <!-- User Field -->
+        <div class="form-group">
+            <label for="user">Select User</label>
+            <select id="user" name="user" class="form-select">
+                {% for user in form.user.field.queryset %}
+                <option value="{{ user.id }}" {% if user.id == form.user.value %}selected{% endif %}>
+                    {{ user.username }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Video Field -->
+        <div class="form-group">
+            <label for="course">Select Course</label>
+            <select id="course" name="course" class="form-select">
+                {% for course in form.course.field.queryset %}
+                <option value="{{ course.id }}" {% if course.id == form.course.value %}selected{% endif %}>
+                    {{ course.title }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Expiration Date Field -->
+        <div class="form-group">
+            <label for="expiration_date">Expiration Date</label>
+            <input type="date" id="expiration_date" name="expiration_date" class="form-input"
+                   value="{{ form.expiration_date.value }}">
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="form-button">Grant Access</button>
+    </form>
+</div>
+{% endblock %}
