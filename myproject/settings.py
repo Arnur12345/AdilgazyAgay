@@ -32,7 +32,7 @@ SECRET_KEY = 'django-insecure-a70v8xgv8_v(00kyvuwfi8#z086cfh00wap9r6yfwp6n5eqd_5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['adilgazyagay-2.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['adilgazyagay-2.onrender.com', 'localhost', '127.0.0.1', 'adilgazyagay.onrender.com']
 
 AUTH_USER_MODEL = "myapp.User" 
 
